@@ -35,11 +35,11 @@ tar zxvf heketi-v10.4.0-release-10.linux.amd64.tar.gz
 cd heketi-client/share/heketi/kubernetes/
 vi heketi.json
 "admin": {
-      "key": "123456"
+      "key": "admin"
     },
     "_user": "User only has access to /volumes endpoint",
     "user": {
-      "key": "123456"
+      "key": "admin"
     }
 
 
@@ -131,14 +131,14 @@ kubectl get svc|grep heketi
 curl http://x.x.x.x:8080/hello
 export HEKETI_CLI_SERVER=http://10.111.162.155:8080
 echo $HEKETI_CLI_SERVER
-heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'Test@123456' topology load --json=topology-sample.json
-heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'Test@123456' topology info
+heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology load --json=topology-sample.json
+heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology info
 ```
 
 ### 七、获取k8s资源文件
 
 ```javascript
-heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'Test@123456' setup-openshift-heketi-storage Saving heketi-storage.json
+heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' setup-openshift-heketi-storage Saving heketi-storage.json
 kubectl apply -f heketi-storage.json
 kubectl delete all,svc,jobs,deployment,secret --selector="deploy-heketi"
 kubectl apply -f heketi-deployment.json
@@ -146,7 +146,7 @@ kubectl get svc|grep heketi
 curl http://x.x.x.x:8080/hello
 export HEKETI_CLI_SERVER=http://10.111.162.155:8080
 echo $HEKETI_CLI_SERVER
-heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret '123456' topology info
+heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology info
 ```
 
 ### 八、创建 storageclass-gfs-heketi.yaml
@@ -159,7 +159,7 @@ metadata:
   namespace: kube-system
 type: kubernetes.io/glusterfs
 data:
-  key: "MTIzNDU2"    #请替换为您自己的密钥。Base64 编码。
+  key: "YWRtaW4="    #请替换为您自己的密钥。Base64 编码
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
