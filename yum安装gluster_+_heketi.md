@@ -204,7 +204,7 @@ parameters:
   restuserkey: "admin"
   gidMin: "40000"
   gidMax: "50000"
-  volumetype: "none"
+  volumetype: "replicate:3"
 allowVolumeExpansion: true
 volumeBindingMode: Immediate
 ```
