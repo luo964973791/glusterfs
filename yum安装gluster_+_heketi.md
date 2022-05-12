@@ -1,7 +1,7 @@
 ### 一、yum安装gluster + heketi
 
 ```javascript
-yum -y install attr psmisc rpcbind
+yum -y install attr psmisc rpcbind openssl openssl-devel
 yum install centos-release-gluster9 -y
 yum install glusterfs-server glusterfs-client heketi-client heketi -y
 systemctl start glusterd glusterfsd && systemctl enable glusterd glusterfsd
