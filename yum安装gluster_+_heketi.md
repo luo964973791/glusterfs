@@ -28,10 +28,12 @@ systemctl start heketi.service && systemctl enable heketi.service
 ### 四、打通所有节点密钥
 
 ```javascript
-ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
-ssh-copy-id -i /etc/heketi/heketi_key.pub node1
-ssh-copy-id -i /etc/heketi/heketi_key.pub node2
-ssh-copy-id -i /etc/heketi/heketi_key.pub node3
+sudo ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
+sudo chown heketi:heketi /etc/heketi/heketi_key*
+ssh-copy-id -i /etc/heketi/heketi_key.pub root@node1
+ssh-copy-id -i /etc/heketi/heketi_key.pub root@node2
+ssh-copy-id -i /etc/heketi/heketi_key.pub root@node3
+
 
 
 
