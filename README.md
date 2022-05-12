@@ -174,7 +174,7 @@ parameters:
   gidMax: "50000"
   gidMin: "40000"
   restauthenabled: "true"
-  resturl: "http://10.101.246.205:8080"    #Gluster REST 服务/Heketi 服务 URL 可按需供应 gluster 存储卷。请替换为您自己的 URL。
+  resturl: "http://10.101.246.205:8080"    #Gluster REST 服务/Heketi 服务,使用后面命令获取: kubectl get svc|grep heketi | grep 8080 | awk '{print $3}'
   restuser: admin
   secretName: heketi-secret
   secretNamespace: kube-system
