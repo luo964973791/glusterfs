@@ -245,3 +245,12 @@ spec:
       storage: 1Gi
 ```
 
+### 八、客户端挂载
+
+```javascript
+[root@node1 localhost]# gluster volume info | grep -E "Brick1|Volume Name" 
+Volume Name: vol_605a5942ce7fb06162eb7ea1c7a5bab9
+Brick1: 172.27.0.5:/var/lib/heketi/mounts/vg_f402e3f2717c0086255c5a11123d205a/brick_9901daf53868ac39a910d32a428e8e8f/brick
+mount -t glusterfs 172.27.0.5:vol_605a5942ce7fb06162eb7ea1c7a5bab9 /mnt
+```
+
