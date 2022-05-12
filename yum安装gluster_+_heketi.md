@@ -103,7 +103,7 @@ cat /etc/heketi/heketi.json
 ### 五、在heketi节点测试.
 
 ```javascript
-systemctl start heketi
+systemctl restart heketi
 systemctl status heketi
 curl http://localhost:8080/hello
 export HEKETI_CLI_SERVER=http://localhost:8080
