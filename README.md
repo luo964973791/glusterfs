@@ -127,9 +127,9 @@ cp /root/heketi-client/bin/heketi-cli /usr/local/bin/
 ### 六、获取当前heketi的ClusterIP,用heketi创建glusterfs集群
 
 ```javascript
-kubectl get svc|grep heketi
-curl http://x.x.x.x:8080/hello
-export HEKETI_CLI_SERVER=http://10.111.162.155:8080
+ip=`kubectl get svc|grep heketi | grep 8080 | awk '{print $3}'`
+curl http://$ip:8080/hello
+export HEKETI_CLI_SERVER=http://$ip:8080
 echo $HEKETI_CLI_SERVER
 heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology load --json=topology-sample.json
 heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology info
@@ -143,8 +143,9 @@ kubectl apply -f heketi-storage.json
 kubectl delete all,svc,jobs,deployment,secret --selector="deploy-heketi"
 kubectl apply -f heketi-deployment.json
 kubectl get svc|grep heketi
-curl http://x.x.x.x:8080/hello
-export HEKETI_CLI_SERVER=http://10.111.162.155:8080
+ip=`kubectl get svc|grep heketi | grep 8080 | awk '{print $3}'`
+curl http://$ip:8080/hello
+export HEKETI_CLI_SERVER=http://$ip:8080
 echo $HEKETI_CLI_SERVER
 heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology info
 ```
