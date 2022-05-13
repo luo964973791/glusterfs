@@ -16,16 +16,7 @@ gluster pool list
 systemctl start heketi.service && systemctl enable heketi.service
 ```
 
-### 三、多台集群添加，只在一台机器执行
-
-```javascript
-gluster peer probe node2
-gluster peer probe node3
-gluster pool list
-systemctl start heketi.service && systemctl enable heketi.service
-```
-
-### 四、打通所有节点密钥
+### 三、打通所有节点密钥
 
 ```javascript
 sudo ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
@@ -102,7 +93,7 @@ cat /etc/heketi/heketi.json
 }
 ```
 
-### 五、在heketi节点测试.
+### 四、在heketi节点测试.
 
 ```javascript
 systemctl restart heketi
@@ -187,7 +178,7 @@ heketi-cli -s $HEKETI_CLI_SERVER --user admin --secret 'admin' topology load --j
 heketi-cli volume create --size=10 --durability=none --user "admin" --secret "admin"
 ```
 
-### 六、创建StorageClass
+### 五、创建StorageClass
 
 ```javascript
 vi storageclass-gfs-heketi-distributed.yaml 
@@ -209,7 +200,7 @@ allowVolumeExpansion: true
 volumeBindingMode: Immediate
 ```
 
-### 七、创建pvc
+### 六、创建pvc
 
 ```javascript
 apiVersion: v1
@@ -245,7 +236,7 @@ spec:
       storage: 1Gi
 ```
 
-### 八、客户端挂载
+### 七、客户端挂载
 
 ```javascript
 [root@node1 localhost]# gluster volume info | grep -E "Brick1|Volume Name" 
